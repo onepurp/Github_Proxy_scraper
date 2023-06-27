@@ -14,16 +14,16 @@ PROXY_TYPES = {
 }
 
 def scrape_proxies(proxy_links):
-    proxies = []
+    proxies = set()
 
     for link in proxy_links:
         response = requests.get(link)
         lines = response.text.split("\n")
         for line in lines:
             if line:
-                proxies.append(line.strip())
+                proxies.add(line.strip())
 
-    return proxies
+    return list(proxies)
 
 def main():
     proxy_links = {
@@ -101,4 +101,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
